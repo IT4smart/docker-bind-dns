@@ -23,7 +23,7 @@ jobs:
           docker buildx build \
             --platform linux/amd64 \
             --push \
-            --tag IT4smart/bind-dns:${GITHUB_REF/refs\/tags\//} \
+            --tag it4smart/bind-dns:${GITHUB_REF/refs\/tags\//} \
             --file Dockerfile .
   release-armhf:
     runs-on: ubuntu-latest
@@ -41,5 +41,5 @@ jobs:
           docker buildx build \
             --platform linux/arm/v7 \
             --push \
-            --tag IT4smart/bind-dns:${GITHUB_REF/refs\/tags\//} \
+            --tag it4smart/bind-dns:${GITHUB_REF/refs\/tags\//} \
             --file Dockerfile .
