@@ -1,4 +1,4 @@
-# lauster/rpi-bind-dns:latest
+# IT4smart/docker-bind-dns:latest
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -13,9 +13,8 @@
   - [Shell Access](#shell-access)
 
 # Introduction
-This is a Bind DNS Server container for docker on alpine linux which can run on Raspberry Pi (or whereever)
-It is Forked from [mastermindg/rpi-dns](https://github.com/mastermindg/rpi-dns) who in turn forked it from
-[sameersbn/bind](https://github.com/sameersbn/docker-bind).
+This is a Bind DNS Server container for docker on debian which can run on Raspberry Pi (or whereever)
+It is Forked from [lauster/rpi-bind-dns](https://github.com/Lauster/rpi-bind-dns).
 
 The `Dockerfile` is used to create a [Docker](https://www.docker.com/) container image for [BIND](https://www.isc.org/downloads/bind/) DNS server.
 The image originally had webmin installed also, but I removed it, since I have no use for it.
@@ -66,7 +65,7 @@ Start BIND using:
 docker run --name bind -d --restart=always \
   --publish 53:53/udp --publish 10000:10000 \
   --volume /srv/docker/bind:/data \
-  lauster/rpi-bind-dns:latest
+  it4smart/bind-dns:latest
 ```
 
 
@@ -78,7 +77,7 @@ You can customize the launch command of BIND server by specifying arguments to `
 docker run --name bind -it --rm \
   --publish 53:53/udp --publish 53:53/tcp \
   --volume /srv/docker/bind:/data \
-  lauster/rpi-bind-dns:latest -h
+  it4smart/bind-dns:latest -h
 ```
 
 ## Persistence
@@ -103,27 +102,27 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull lauster/rpi-bind-dns:latest
+  docker pull it4smart/bind-dns:latest
   ```
 
   2. Stop the currently running image:
 
   ```bash
-  docker stop rpi-bind-dns
+  docker stop bind-dns
   ```
 
   3. Remove the stopped container
 
   ```bash
-  docker rm -v rpi-bind-dns
+  docker rm -v bind-dns
   ```
 
   4. Start the updated image
 
   ```bash
-  docker run -name rpi-bind-dns -d \
+  docker run -name bind-dns -d \
     [OPTIONS] \
-    lauster/rpi-bind-dns:latest
+    it4smart/bind-dns:latest
   ```
 
 ## Shell Access
@@ -131,5 +130,5 @@ To upgrade to newer releases:
 For debugging and maintenance purposes you may want access the containers shell. If you are using Docker version `1.3.0` or higher you can access a running containers shell by starting `bash` using `docker exec`:
 
 ```bash
-docker exec -it lauster/rpi-bind-dns /bin/bash
+docker exec -it it4smart/bind-dns /bin/bash
 ```
